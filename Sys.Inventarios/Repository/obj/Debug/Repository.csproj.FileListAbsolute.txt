@@ -1,0 +1,11 @@
+C:\Users\golden\source\repos\inventarios-master\Sys.Inventarios\Repository\bin\Debug\Repository.dll
+C:\Users\golden\source\repos\inventarios-master\Sys.Inventarios\Repository\bin\Debug\Repository.pdb
+C:\Users\golden\source\repos\inventarios-master\Sys.Inventarios\Repository\bin\Debug\PagedList.dll
+C:\Users\golden\source\repos\inventarios-master\Sys.Inventarios\Repository\bin\Debug\PagedList.Mvc.dll
+C:\Users\golden\source\repos\inventarios-master\Sys.Inventarios\Repository\bin\Debug\PagedList.xml
+C:\Users\golden\source\repos\inventarios-master\Sys.Inventarios\Repository\bin\Debug\PagedList.Mvc.xml
+C:\Users\golden\source\repos\inventarios-master\Sys.Inventarios\Repository\obj\Debug\Repository.csprojAssemblyReference.cache
+C:\Users\golden\source\repos\inventarios-master\Sys.Inventarios\Repository\obj\Debug\Repository.csproj.CoreCompileInputs.cache
+C:\Users\golden\source\repos\inventarios-master\Sys.Inventarios\Repository\obj\Debug\Repository.csproj.CopyComplete
+C:\Users\golden\source\repos\inventarios-master\Sys.Inventarios\Repository\obj\Debug\Repository.dll
+C:\Users\golden\source\repos\inventarios-master\Sys.Inventarios\Repository\obj\Debug\Repository.pdb

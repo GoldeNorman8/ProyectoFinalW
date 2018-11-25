@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1686a0dad5304c26949ee484ed0495c4" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="inventariosModel.Anexos" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="inventariosModel.Catalogos" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="inventariosModel.Compras" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="inventariosModel.Empresas" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="inventariosModel.Impuestos" Width="1.5" PointX="10.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="inventariosModel.Permisos" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="inventariosModel.Productos_Empresas" Width="1.5" PointX="8.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="inventariosModel.Usuarios" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="inventariosModel.Ventas" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="inventariosModel.FK_Empresas_Catalogos" ManuallyRouted="false" />
+        <AssociationConnector Association="inventariosModel.FK_Empresas_Catalogos1" ManuallyRouted="false" />
+        <AssociationConnector Association="inventariosModel.FK_Permisos_Catalogos" ManuallyRouted="false" />
+        <AssociationConnector Association="inventariosModel.FK_Usuarios_Catalogos" ManuallyRouted="false" />
+        <AssociationConnector Association="inventariosModel.FK_Compras_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="inventariosModel.FK_Impuestos_Compras" ManuallyRouted="false" />
+        <AssociationConnector Association="inventariosModel.FK_Productos_Empresas_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="inventariosModel.FK_Usuarios_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="inventariosModel.FK_Impuestos_Ventas" ManuallyRouted="false" />
+        <AssociationConnector Association="inventariosModel.FK_Ventas_Usuarios" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="inventariosModel.Productos" Width="1.5" PointX="0.75" PointY="2.875" />
+        <AssociationConnector Association="inventariosModel.FK_Anexos_Productos" />
+        <AssociationConnector Association="inventariosModel.FK_Compras_Productos" />
+        <AssociationConnector Association="inventariosModel.FK_Productos_Empresas_Productos" />
+        <AssociationConnector Association="inventariosModel.FK_Ventas_Productos" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Entrar al Sistema de Inventarios";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+<div class="o-page__card">
+    <div class="c-card u-mb-xsmall">
+        <header class="c-card__header u-pt-large">
+            <a class="c-card__icon" href="#!">
+                <img src="~/Content/img/logoinventarioo.png" alt="Panel de Control" />
+            </a>
+            <h1 class="u-h3 u-text-center u-mb-zero">Bienvenidos al Sistema de Inventarios.</h1>
+        </header>
+
+        <form class="c-card__body formAjax" method="post" action="~/Account/Index">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="input1">Correo electrónico</label>
+                <input class="c-input" type="email" id="email" required="required" name="email" placeholder="patito@umg.com">
+            </div>
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="input2">Contraseña</label>
+                <input class="c-input" type="password" id="password" required="required" name="password" placeholder="*****">
+            </div>
+            <div class="c-field u-mb-small">
+                <input name="recordar" id="recordar" type="checkbox" value="true" /> <label class="c-field__label" for="recordar">Recordar</label>
+            </div>
+            <button class="c-btn c-btn--primary c-btn--fullwidth btnAjax" type="submit">
+                Entrar
+                <img src="~/Content/img/load.gif" class="loadingAjax" style="display:none" />
+            </button>
+        </form>
+    </div>
+    <div class="o-line">
+        <a class="u-text-mute u-text-small" href="~/Account/Registrarme">No estas registrado? Crea tu cuenta</a>
+        <a class="u-text-mute u-text-small" href="~/Account/RecuperarCuenta">Olvidaste tu contraseña?</a>
+    </div>
+</div>
+

@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="inventariosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Anexos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Archivo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Producto_Id" Type="Int32" />
+    <Property Name="Estatus" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Productos" Relationship="inventariosModel.FK_Anexos_Productos" FromRole="Anexos" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Catalogos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Catalogo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Valor" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Empresas" Relationship="Self.FK_Empresas_Catalogos" FromRole="Catalogos" ToRole="Empresas" />
+    <NavigationProperty Name="Empresas1" Relationship="Self.FK_Empresas_Catalogos1" FromRole="Catalogos" ToRole="Empresas" />
+    <NavigationProperty Name="Permisos" Relationship="Self.FK_Permisos_Catalogos" FromRole="Catalogos" ToRole="Permisos" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Catalogos" FromRole="Catalogos" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Compras">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Compra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Producto_Id" Type="Int32" Nullable="false" />
+    <Property Name="Empresa_Id" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="CostoUnitario" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CostoTotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CostoNeto" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="GranTotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Empresas" Relationship="Self.FK_Compras_Empresas" FromRole="Compras" ToRole="Empresas" />
+    <NavigationProperty Name="Impuestos" Relationship="Self.FK_Impuestos_Compras" FromRole="Compras" ToRole="Impuestos" />
+    <NavigationProperty Name="Productos" Relationship="inventariosModel.FK_Compras_Productos" FromRole="Compras" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Empresas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreEmpresa" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CorreoElectronico" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Moneda" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="ZonaHoraria_Id" Type="Int32" />
+    <Property Name="Logo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Catalogos" Relationship="Self.FK_Empresas_Catalogos" FromRole="Empresas" ToRole="Catalogos" />
+    <NavigationProperty Name="Catalogos1" Relationship="Self.FK_Empresas_Catalogos1" FromRole="Empresas" ToRole="Catalogos" />
+    <NavigationProperty Name="Compras" Relationship="Self.FK_Compras_Empresas" FromRole="Empresas" ToRole="Compras" />
+    <NavigationProperty Name="Productos_Empresas" Relationship="Self.FK_Productos_Empresas_Empresas" FromRole="Empresas" ToRole="Productos_Empresas" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Empresas" FromRole="Empresas" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Impuestos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Impuesto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Porcentaje" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Monto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Venta_Id" Type="Int32" />
+    <Property Name="Compra_Id" Type="Int32" />
+    <Property Name="Estatus" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Compras" Relationship="Self.FK_Impuestos_Compras" FromRole="Impuestos" ToRole="Compras" />
+    <NavigationProperty Name="Ventas" Relationship="Self.FK_Impuestos_Ventas" FromRole="Impuestos" ToRole="Ventas" />
+  </EntityType>
+  <EntityType Name="Permisos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Grupo_Id" Type="Int32" Nullable="false" />
+    <Property Name="Modificar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Editar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Eliminar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Catalogos" Relationship="Self.FK_Permisos_Catalogos" FromRole="Permisos" ToRole="Catalogos" />
+  </EntityType>
+  <EntityType Name="Productos_Empresas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Producto_Id" Type="Int32" Nullable="false" />
+    <Property Name="Empresa_Id" Type="Int32" Nullable="false" />
+    <Property Name="Estatus" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Empresas" Relationship="Self.FK_Productos_Empresas_Empresas" FromRole="Productos_Empresas" ToRole="Empresas" />
+    <NavigationProperty Name="Productos" Relationship="inventariosModel.FK_Productos_Empresas_Productos" FromRole="Productos_Empresas" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CorreoElectronico" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmpresaId" Type="Int32" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombres" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="Rol_Id" Type="Int32" Nullable="false" />
+    <Property Name="Token" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Catalogos" Relationship="Self.FK_Usuarios_Catalogos" FromRole="Usuarios" ToRole="Catalogos" />
+    <NavigationProperty Name="Empresas" Relationship="Self.FK_Usuarios_Empresas" FromRole="Usuarios" ToRole="Empresas" />
+    <NavigationProperty Name="Ventas" Relationship="Self.FK_Ventas_Usuarios" FromRole="Usuarios" ToRole="Ventas" />
+  </EntityType>
+  <EntityType Name="Ventas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Venta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cliente_Id" Type="Int32" Nullable="false" />
+    <Property Name="Producto_Id" Type="Int32" Nullable="false" />
+    <Property Name="CostoUnitario" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CostoTotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CostoNeto" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="GranTotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <NavigationProperty Name="Impuestos" Relationship="Self.FK_Impuestos_Ventas" FromRole="Ventas" ToRole="Impuestos" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Ventas_Usuarios" FromRole="Ventas" ToRole="Usuarios" />
+    <NavigationProperty Name="Productos" Relationship="inventariosModel.FK_Ventas_Productos" FromRole="Ventas" ToRole="Productos" />
+  </EntityType>
+  <Association Name="FK_Empresas_Catalogos">
+    <End Role="Catalogos" Type="Self.Catalogos" Multiplicity="0..1" />
+    <End Role="Empresas" Type="Self.Empresas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalogos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Empresas">
+        <PropertyRef Name="ZonaHoraria_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empresas_Catalogos1">
+    <End Role="Catalogos" Type="Self.Catalogos" Multiplicity="1" />
+    <End Role="Empresas" Type="Self.Empresas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalogos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Empresas">
+        <PropertyRef Name="Tipo_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Permisos_Catalogos">
+    <End Role="Catalogos" Type="Self.Catalogos" Multiplicity="1" />
+    <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalogos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Permisos">
+        <PropertyRef Name="Grupo_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Catalogos">
+    <End Role="Catalogos" Type="Self.Catalogos" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalogos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="Rol_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Compras_Empresas">
+    <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+    <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Compras">
+        <PropertyRef Name="Empresa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Impuestos_Compras">
+    <End Role="Compras" Type="Self.Compras" Multiplicity="0..1" />
+    <End Role="Impuestos" Type="Self.Impuestos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Compras">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Impuestos">
+        <PropertyRef Name="Compra_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Productos_Empresas_Empresas">
+    <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+    <End Role="Productos_Empresas" Type="Self.Productos_Empresas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Productos_Empresas">
+        <PropertyRef Name="Empresa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Empresas">
+    <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="EmpresaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Impuestos_Ventas">
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+    <End Role="Impuestos" Type="Self.Impuestos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ventas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Impuestos">
+        <PropertyRef Name="Venta_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ventas_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="Cliente_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entidades" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Anexos" EntityType="Self.Anexos" />
+    <EntitySet Name="Catalogos" EntityType="Self.Catalogos" />
+    <EntitySet Name="Compras" EntityType="Self.Compras" />
+    <EntitySet Name="Empresas" EntityType="Self.Empresas" />
+    <EntitySet Name="Impuestos" EntityType="Self.Impuestos" />
+    <EntitySet Name="Permisos" EntityType="Self.Permisos" />
+    <EntitySet Name="Productos_Empresas" EntityType="Self.Productos_Empresas" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <EntitySet Name="Ventas" EntityType="Self.Ventas" />
+    <AssociationSet Name="FK_Empresas_Catalogos" Association="Self.FK_Empresas_Catalogos">
+      <End Role="Catalogos" EntitySet="Catalogos" />
+      <End Role="Empresas" EntitySet="Empresas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empresas_Catalogos1" Association="Self.FK_Empresas_Catalogos1">
+      <End Role="Catalogos" EntitySet="Catalogos" />
+      <End Role="Empresas" EntitySet="Empresas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Permisos_Catalogos" Association="Self.FK_Permisos_Catalogos">
+      <End Role="Catalogos" EntitySet="Catalogos" />
+      <End Role="Permisos" EntitySet="Permisos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Catalogos" Association="Self.FK_Usuarios_Catalogos">
+      <End Role="Catalogos" EntitySet="Catalogos" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Compras_Empresas" Association="Self.FK_Compras_Empresas">
+      <End Role="Empresas" EntitySet="Empresas" />
+      <End Role="Compras" EntitySet="Compras" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Impuestos_Compras" Association="Self.FK_Impuestos_Compras">
+      <End Role="Compras" EntitySet="Compras" />
+      <End Role="Impuestos" EntitySet="Impuestos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Productos_Empresas_Empresas" Association="Self.FK_Productos_Empresas_Empresas">
+      <End Role="Empresas" EntitySet="Empresas" />
+      <End Role="Productos_Empresas" EntitySet="Productos_Empresas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Empresas" Association="Self.FK_Usuarios_Empresas">
+      <End Role="Empresas" EntitySet="Empresas" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Impuestos_Ventas" Association="Self.FK_Impuestos_Ventas">
+      <End Role="Ventas" EntitySet="Ventas" />
+      <End Role="Impuestos" EntitySet="Impuestos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ventas_Usuarios" Association="Self.FK_Ventas_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+    <EntitySet Name="Productos" EntityType="inventariosModel.Productos" />
+    <AssociationSet Name="FK_Anexos_Productos" Association="inventariosModel.FK_Anexos_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Anexos" EntitySet="Anexos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Compras_Productos" Association="inventariosModel.FK_Compras_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Compras" EntitySet="Compras" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Productos_Empresas_Productos" Association="inventariosModel.FK_Productos_Empresas_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Productos_Empresas" EntitySet="Productos_Empresas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ventas_Productos" Association="inventariosModel.FK_Ventas_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+    <Property Name="Marca" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Modelo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="UnidadMedida" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Estatus" Type="Boolean" />
+    <Property Name="Costo" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Utilidad" Type="Int32" />
+    <Property Name="PrecioVenta" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Stock" Type="Int32" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="0" />
+    <Property Name="FechaActivo" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Anexos" Relationship="inventariosModel.FK_Anexos_Productos" FromRole="Productos" ToRole="Anexos" />
+    <NavigationProperty Name="Compras" Relationship="inventariosModel.FK_Compras_Productos" FromRole="Productos" ToRole="Compras" />
+    <NavigationProperty Name="Productos_Empresas" Relationship="inventariosModel.FK_Productos_Empresas_Productos" FromRole="Productos" ToRole="Productos_Empresas" />
+    <NavigationProperty Name="Ventas" Relationship="inventariosModel.FK_Ventas_Productos" FromRole="Productos" ToRole="Ventas" />
+  </EntityType>
+  <Association Name="FK_Anexos_Productos">
+    <End Type="inventariosModel.Productos" Role="Productos" Multiplicity="0..1" />
+    <End Type="inventariosModel.Anexos" Role="Anexos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Anexos">
+        <PropertyRef Name="Producto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Compras_Productos">
+    <End Type="inventariosModel.Productos" Role="Productos" Multiplicity="1" />
+    <End Type="inventariosModel.Compras" Role="Compras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Compras">
+        <PropertyRef Name="Producto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Productos_Empresas_Productos">
+    <End Type="inventariosModel.Productos" Role="Productos" Multiplicity="1" />
+    <End Type="inventariosModel.Productos_Empresas" Role="Productos_Empresas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Productos_Empresas">
+        <PropertyRef Name="Producto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ventas_Productos">
+    <End Type="inventariosModel.Productos" Role="Productos" Multiplicity="1" />
+    <End Type="inventariosModel.Ventas" Role="Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="Producto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

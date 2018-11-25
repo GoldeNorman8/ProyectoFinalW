@@ -1,0 +1,184 @@
+﻿@model IEnumerable<Model.Productos>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row u-mb-large">
+    <div class="col-sm-12">
+        <div class="c-table-responsive@desktop">
+            <table class="c-table c-table--highlight u-mb-small">
+                <caption class="c-table__title">
+                    Productos <small>20</small>
+
+                    <a class="c-table__title-action" href="#!">
+                        <i class="fa fa-cloud-download"></i>
+                    </a>
+                    <button type="button" class="c-btn c-btn--info" data-toggle="modal" data-target="#modal8">
+                        Agregar Producto
+                    </button>
+                </caption>
+                <thead class="c-table__head c-table__head--slim">
+                    <tr class="c-table__row">
+                        <th class="c-table__cell c-table__cell--head">Producto</th>
+                        <th class="c-table__cell c-table__cell--head">Codigo</th>
+                        <th class="c-table__cell c-table__cell--head">Nombre</th>
+                        <th class="c-table__cell c-table__cell--head">Marca</th>
+                        <th class="c-table__cell c-table__cell--head">Modelo</th>
+                        <th class="c-table__cell c-table__cell--head">Estatus</th>
+                        <th class="c-table__cell c-table__cell--head">Costo</th>
+                        <th class="c-table__cell c-table__cell--head">Precio Venta</th>
+                        <th class="c-table__cell c-table__cell--head">Utilidad</th>
+                        <th class="c-table__cell c-table__cell--head">Stock</th>
+                        <th class="c-table__cell c-table__cell--head">
+                            <span class="u-hidden-visually">Tools</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr class="c-table__row">
+                                <td class="c-table__cell">
+                                    @item.Codigo
+                                </td>
+                                <td class="c-table__cell">
+                                    @item.Codigo
+                                </td>
+                                <td class="c-table__cell">
+                                    @item.Nombre
+                                    <small class="u-block u-text-mute">@item.Descripcion</small>
+                                </td>
+                                <td class="c-table__cell">
+                                    @item.Marca
+                                    <small class="u-block u-text-mute">@item.Modelo</small>
+                                </td>
+                                <td class="c-table__cell">
+                                    <div class="o-media">
+                                        <div class="o-media__img u-mr-xsmall">
+                                            <div class="c-avatar c-avatar--xsmall">
+                                                <img class="c-avatar__img" src="img/avatar1-72.jpg" alt="Adam's Face">
+                                            </div>
+                                        </div>
+                                        <div class="o-media__body">
+                                            @item.Estatus
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="c-table__cell">
+                                    @item.Costo
+                                    <small class="u-block u-text-mute">@item.PrecioVenta</small>
+                                </td>
+                                <td class="c-table__cell">
+                                    @item.Utilidad
+                                </td>
+                                <td class="c-table__cell">
+                                    @item.Stock
+                                </td>
+                                <td class="c-table__cell u-text-right">
+                                    <div class="c-dropdown dropdown">
+                                        <button class="c-btn c-btn--secondary has-dropdown dropdown-toggle" id="dropdownMenuButton28" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</button>
+
+                                        <div class="c-dropdown__menu dropdown-menu" aria-labelledby="dropdownMenuButton28">
+                                            <a class="c-dropdown__item dropdown-item" href="#">Editar</a>
+                                            <a class="c-dropdown__item dropdown-item" href="#">Ver</a>
+                                            <a class="c-dropdown__item dropdown-item" href="#">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="c-table__cell" colspan="10">
+                                No tienes productos registrados
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="c-modal c-modal--large modal fade" id="modal8" tabindex="-1" role="dialog" aria-labelledby="modal8" data-backdrop="static">
+    <div class="c-modal__dialog modal-dialog" role="document">
+        <div class="c-modal__content">
+
+            <div class="c-modal__header u-bg-primary">
+                <h3 class="c-modal__title">Producto</h3>
+                <span class="c-modal__close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-close"></i>
+                </span>
+            </div>
+            <div class="c-modal__body">
+                <form action="~/Productos/FileUpload" class="dropzone u-mb-small" id="modal-dropzone" style="height: 180px;">
+                    <div class="dz-message" data-dz-message>
+                        <i class="dz-icon fa fa-cloud-upload"></i>
+                        <span>Arrastra y suelta las imagenes del producto</span>
+                    </div>
+                    <div class="fallback">
+                        <input name="file" type="file" multiple>
+                    </div>
+
+                </form>
+                <form class="c-card__body formAjax" method="post" action="~/Productos/Add">
+                    <div class="row">
+                        <div class="c-field u-mb-xsmall">
+                            <label class="c-field__label" for="input-project">Código</label>
+                            <input type="text" class="c-input" name="Codigo" id="input-project" disabled="disabled">
+                        </div>
+                        <div class="c-field u-mb-xsmall">
+                            <label class="c-field__label" for="input-project">Nombre del Producto</label>
+                            <input type="text" class="c-input" name="Nombre" id="input-project" placeholder="Nombre del Producto"  required="required">
+                        </div>
+                        <div class="c-field u-mb-xsmall">
+                            <label class="c-field__label" for="input-project">Descripción del Producto</label>
+                            <input type="text" class="c-input" name="Descripcion" id="input-project" placeholder="Descripción del Producto"  required="required">
+                        </div>
+                        <div class="col-md-4 sin-padding c-field u-mb-xsmall">
+                            <label class="c-field__label" for="input-project">Marca</label>
+                            <input type="text" class="c-input" name="Marca" id="input-project" placeholder="Marca"  required="required">
+                        </div>
+                        <div class="col-md-4 c-field u-mb-xsmall">
+                            <label class="c-field__label" for="input-project">Modelo</label>
+                            <input type="text" class="c-input" name="Modelo" id="input-project" placeholder="Modelo"  required="required">
+                        </div>
+
+                        <div class="col-md-4 sin-padding-last c-field u-mb-xsmall">
+                            <label class="c-field__label" for="input-project">Stock</label>
+                            <input type="number" class="c-input" name="Stock" id="input-project" placeholder="5" min="0"  required="required">
+                        </div>
+                        <div class="col-md-4 sin-padding c-field u-mb-xsmall">
+                            <label class="c-field__label" for="input-project">Unidad de Medida</label>
+                            <input type="text" class="c-input" name="UnidadMedida" id="input-project" placeholder="Unidad de Medida"  required="required">
+                        </div>
+                        <div class="col-md-4 c-field u-mb-xsmall">
+                            <label class="c-field__label" for="input-project">Costo</label>
+                            <input type="number" class="c-input" name="Costo" id="input-project" placeholder="20.00" min="0"  required="required">
+                        </div>
+                        <div class="col-md-4 sin-padding c-field u-mb-xsmall">
+                            <label class="c-field__label" for="input-project">Precio Venta</label>
+                            <input type="number" class="c-input" name="PrecioVenta" id="input-project" placeholder="35.00" min="0"  required="required">
+                        </div>
+                        <input type="hidden" name="archivos" id="archivos" />
+                        <input type="hidden" name="Id" id="Id" />
+                    </div>
+                    <div class="c-modal__footer u-justify-center">
+                        <button class="c-btn c-btn--success btnAjax" type="submit">
+                            Crear Producto
+                            <img src="~/Content/img/load.gif" class="loadingAjax" style="display:none" />
+                        </button>
+                    </div>
+                </form>
+                    
+
+            </div>
+            
+        </div><!-- // .c-modal__content -->
+    </div><!-- // .c-modal__dialog -->
+</div><!-- // .c-modal -->

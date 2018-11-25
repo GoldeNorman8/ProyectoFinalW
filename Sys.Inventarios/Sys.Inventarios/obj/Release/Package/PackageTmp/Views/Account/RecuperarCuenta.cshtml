@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Recuperar Cuenta";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+<div class="o-page__card">
+    <div class="c-card u-mb-xsmall">
+        <header class="c-card__header u-pt-large">
+            <a class="c-card__icon" href="#!">
+                <img src="~/Content/img/logoinventarioo.png" alt="Panel de Control" />
+            </a>
+            <h1 class="u-h3 u-text-center u-mb-zero">Recuperar Cuenta Ingrese Correo Electronico.</h1>
+        </header>
+
+        <form class="c-card__body formAjax" method="post" action="~/Account/RecuperarCuenta">
+            <div class="c-field u-mb-small">
+                <label class="c-field__label" for="email">Correo electrónico</label>
+                <input class="c-input" type="email" id="email"  required="required" name="CorreoElectronico" placeholder="norman@umg.com">
+            </div>
+            <button class="c-btn c-btn--info c-btn--fullwidth btnAjax" type="submit">
+                Enviar
+                <img src="~/Content/img/load.gif" class="loadingAjax" style="display:none" />
+            </button>
+        </form>
+    </div>
+    <div class="o-line">
+        <a class="u-text-mute u-text-small" href="~/Account">Entrar al sistema</a>
+    </div>
+</div>
+
